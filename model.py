@@ -135,7 +135,7 @@ def ViT_FIM_model_L(pretrained=False, **kwargs):
         norm_layer=partial(nn.LayerNorm, eps=1e-6),
         **kwargs)
     model.default_cfg = _cfg()
-    if pretrained:
+    if pretrained: 
         checkpoint = torch.load(
             kwargs["init_ckpt"], map_location="cpu"
         )
