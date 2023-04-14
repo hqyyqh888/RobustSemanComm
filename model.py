@@ -97,7 +97,7 @@ class ViT_FIM_CLS(nn.Module):
        
 
 @register_model
-def ViT_FIM_model(pretrained=False, **kwargs):
+def ViT_FIM_model_S(pretrained=False, **kwargs):
     model = ViT_FIM_CLS(
         img_size=224,
         patch_size=16,
@@ -119,3 +119,25 @@ def ViT_FIM_model(pretrained=False, **kwargs):
         model.load_state_dict(checkpoint["model"])
     return model
 
+@register_model
+def ViT_FIM_model_L(pretrained=False, **kwargs):
+    model = ViT_FIM_CLS(
+        img_size=224,
+        patch_size=16,
+        encoder_embed_dim=784,
+        encoder_depth=8,
+        encoder_num_heads=6,
+        decoder_embed_dim=12,
+        decoder_depth=4,
+        decoder_num_heads=8,
+        mlp_ratio=4,
+        qkv_bias=True,
+        norm_layer=partial(nn.LayerNorm, eps=1e-6),
+        **kwargs)
+    model.default_cfg = _cfg()
+    if pretrained:
+        checkpoint = torch.load(
+            kwargs["init_ckpt"], map_location="cpu"
+        )
+        model.load_state_dict(checkpoint["model"])
+    return model
