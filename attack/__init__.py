@@ -1,0 +1,1 @@
+from .reg_attack import FastGradientSignUntargeted as FGSM_REG
