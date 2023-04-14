@@ -11,6 +11,6 @@ The following versions have been tested: Python 3.9 + Pytorch 1.8.0. But newer v
 # Introductions
 The running instructions are available at the script 'running_command.sh', please kindly choose the required one and paste it to 'execute.sh'. Then, you can use 'bash execute.sh' to excute the script.
 
-Moreover, the results raised in the paper require initiizing the model with official pretrained weights or the weights trained with mask strategy, you can modify the settings of the model at the end of 'model.py' to train the whole model.
+Moreover, the results raised in the paper require initializing the model with official pretrained weights or the weights trained with mask strategy, you can modify the settings of the model at the end of 'model.py' to train the whole model.
 
 We also provide the code for MIMO communication, just modify the transmission procedure in the class 'VectorQuantizer'.
