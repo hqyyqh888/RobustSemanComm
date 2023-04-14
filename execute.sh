@@ -1,5 +1,5 @@
 TF_ENABLE_ONEDNN_OPTS=0 CUDA_VISIBLE_DEVICES=0  python3  run_class_main.py \
-    --model  ViT_Van_model  \
+    --model  ViT_Van_model_S  \
     --output_dir ckpt_record   \
     --data_set cifar_S32 \
     --batch_size 50 \
