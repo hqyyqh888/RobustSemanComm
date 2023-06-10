@@ -114,7 +114,7 @@ class ViT_FIM_CLS(nn.Module):
         self.encoder_to_channel = nn.Linear(encoder_embed_dim, 32)
         self.channel = Channels()
         self.channel_to_decoder = nn.Linear(32, decoder_embed_dim)
-        self.head = nn.Linear(decoder_embed_dim*196, IMGC_NUMCLASS)
+        self.head = nn.Linear(decoder_embed_dim, IMGC_NUMCLASS)
         self.bit_per_digit = 12
         self.vq_layer = VectorQuantizer(num_embeddings=2**self.bit_per_digit,
                                         embedding_dim=32)
@@ -155,8 +155,8 @@ class ViT_FIM_CLS(nn.Module):
         # x = self.channel.AWGN(x, noise_var.item())
         x = self.channel_to_decoder(x)
         x = self.img_decoder(x)
-        x = self.head(x.view(x.shape[0],-1))
-        # x = self.head(x.mean(1))
+        # x = self.head(x.view(x.shape[0],-1))
+        x = self.head(x.mean(1))
         out['out_x'] = x      
         out['out_c'] = cls_out
         # out['vq_loss'] = vq_loss
